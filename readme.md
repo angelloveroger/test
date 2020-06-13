@@ -8,6 +8,6 @@
 >>>         git remote add origin https://github.com/angelloveroger/test.git
 >>>         git push -u origin master
 >>>---
->> ## ***2.…or push an existing repository from the command line***  
+>> ## ***2. …or push an existing repository from the command line***  
 >>>     git remote add origin https://github.com/angelloveroger/test.git  
 >>>     git push -u origin master
