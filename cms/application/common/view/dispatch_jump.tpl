@@ -45,7 +45,7 @@
     </p>
 </div>
 <div class="copyright">
-    <p>Powered by <a href="http://www.yzncms.com/">YznCMS</a></p>
+    <p>Powered by <a href="http://www.yzncms.com/">Admin</a></p>
 </div>
 {if $url}
     <script type="text/javascript">

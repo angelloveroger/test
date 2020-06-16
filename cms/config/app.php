@@ -19,9 +19,9 @@ return [
     // 应用地址
     'app_host' => '',
     // 应用调试模式
-    'app_debug' => true,
+    'app_debug' => 0,
     // 应用Trace
-    'app_trace' => true,
+    'app_trace' => 0,
     // 应用模式状态
     'app_status' => '',
     // 是否支持多模块

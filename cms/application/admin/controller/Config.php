@@ -1,13 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Yzncms [ 御宅男工作室 ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2018 http://yzncms.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 御宅男 <530765310@qq.com>
-// +----------------------------------------------------------------------
 
 // +----------------------------------------------------------------------
 // | 系统配置
@@ -82,7 +73,7 @@ class Config extends Adminbase
                     }
                 }
                 //数据格式验证
-                if (!empty($fieldRule[$type]) && !empty($data[$name]) && !\think\facade\Validate::{$fieldRule[$type]}($data[$name])) {
+                if (!empty($fieldRule[$type]) && !empty($data[$name]) && !\think\facade\Validate::$fieldRule[$type]($data[$name])) {
                     return $this->error("'" . $name . "'格式错误~");
                 }
                 if (isset($data[$name])) {
