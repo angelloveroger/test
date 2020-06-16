@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网站后台管理</title>
+    <link href="/static/Admin/css/admin_login.css" rel="stylesheet" type="text/css" />
+    <link href="/static/Admin/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style>
+        body{background :url(/static/Admin/images/bg.jpg) repeat center; background-size:cover; height: 100vh;}
+    </style>
+</head>
+<body>
+<div class="admin_login_wrap">
+    <div class="row rowBox">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="leftImgBox">
+                <img src="/static/Admin/images/pic.png" alt="">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <div class="adming_login_border">
+                <h1>后台管理系统</h1>
+                <div class="admin_input">
+                    <form action="{:url('login/index')}" method="post">
+                        <ul class="admin_items">
+                            <li>
+                                <input type="text" name="username" placeholder="用户名" value="admin" id="user" size="40" class="admin_input_style" />
+                            </li>
+                            <li>
+                                <input type="password" name="password" placeholder="密码" value="123456" id="pwd" size="40" class="admin_input_style mb60" />
+                            </li>
+                            <li>
+                                <input type="submit" tabindex="3" value="提交" class="btnSubmit" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" style="height: 30px;"></div>
+    </div>
+</div>
+</body>
+</html>
