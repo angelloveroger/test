@@ -9,10 +9,7 @@ use think\Db;
 class Index extends AuthCheck{
 
     public function index(){
-
-        $businessDbArr = Db::name('business')->whereIn('id',  Session::get('adminInfo.business'))->select();
-        $businessStr = implode(',', array_column($businessDbArr, 'name'));
-        $businessStr ? $str = '亲爱的'. Session::get('adminInfo.username'). '，您管理的公司有：'. $businessStr : '亲爱的'. Session::get('adminInfo.username') . '，暂无需要管理的公司';
+        $str = '亲爱的'. Session::get('adminInfo.username'). '，当前为：'. date('F d'). '&nbsp;' .date('D').'&nbsp;时间为：'.date('H:i:s');
         return $str;exit;
         return $this->fetch();
         return 'admin/index/index';

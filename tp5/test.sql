@@ -25,38 +25,15 @@ CREATE TABLE `tp_admin` (
   `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
   `salt` varchar(4) NOT NULL DEFAULT '' COMMENT 'salt值',
   `status` tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '状态 1正常 2禁止登陆',
-  `business` varchar(512) NOT NULL DEFAULT '' COMMENT '管理公司ID',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of tp_admin
 -- ----------------------------
-INSERT INTO `tp_admin` VALUES ('1', 'roger', '4acf399abcd309cbdde1042dfad12bd4', '8888', '1', '1,3,5');
-INSERT INTO `tp_admin` VALUES ('2', 'angel', '4acf399abcd309cbdde1042dfad12bd4', '8888', '1', '');
+INSERT INTO `tp_admin` VALUES ('1', 'roger', '4acf399abcd309cbdde1042dfad12bd4', '8888', '1');
+INSERT INTO `tp_admin` VALUES ('2', 'angel', '4acf399abcd309cbdde1042dfad12bd4', '8888', '1');
 
--- ----------------------------
--- Table structure for tp_business
--- ----------------------------
-DROP TABLE IF EXISTS `tp_business`;
-CREATE TABLE `tp_business` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `cid` int(11) unsigned NOT NULL DEFAULT 1 COMMENT '区域id',
-  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '商户名',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '商户状态 0失效 1有效',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='商户表';
-
--- ----------------------------
--- Records of tp_business
--- ----------------------------
-INSERT INTO `tp_business` VALUES ('1', '1', '宜昌A', '1');
-INSERT INTO `tp_business` VALUES ('2', '1', '宜昌B', '1');
-INSERT INTO `tp_business` VALUES ('3', '1', '宜昌C', '1');
-INSERT INTO `tp_business` VALUES ('4', '1', '宜昌D', '1');
-INSERT INTO `tp_business` VALUES ('5', '2', '恩施A', '1');
-INSERT INTO `tp_business` VALUES ('6', '2', '恩施B', '1');
-INSERT INTO `tp_business` VALUES ('7', '2', '恩施C', '1');
 
 -- ----------------------------
 -- Table structure for tp_group
