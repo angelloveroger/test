@@ -1,4 +1,4 @@
-># hello world 
+># hello git 
 >
 >> ## ***1. …or create a new repository on the command line***
 >>>         echo "# test" >> README.md
