@@ -1,0 +1,23 @@
+@echo off
+::===============================带完全路径则加上【%CD%】================================
+::当前路径下所有的文件
+::for %%i in (*) do echo %%i >> all-files.txt
+
+::当前路径下文件名1-5个字符的文件
+::for %%i in (?????.*) do echo %%i >> a-file-5.txt
+
+::当前路径下所有的目录
+::for /d %%i in (*) do echo %%i >> all-paths.txt   
+
+::当前路径下1-5个字符的文件夹
+::for /d %%i in (?????) do echo %%i >> a-path-5.txt
+
+::指定路径下【d:\work\】递归搜索指定文件【download*.php】
+::for /r d:\work\ %%i in (download*.php) do echo %%i >> a-searchResult.txt
+::=================================================================================
+echo GAME OVER
+pause
+
+
+
+
