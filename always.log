@@ -1,7 +1,20 @@
-vs code 插件 remote-ssh 可以连接远程服务器
-ssh终端工具【tabby】
-ssh终端工具【electerm】
-vpn工具【openVPN】【torjan】【v2ray】
+# 插件
+	【remote-ssh】   vs code 插件
+# 工具	 
+	【tabby】 ssh终端工具
+	【electerm】 ssh终端工具
+# 下载youtube视频
+	【you-get】
+	【【youtube-dl】
+# 下载工具
+	【aria2】
+# 梯子
+	【xray】
+	【trojan-go】
+	【v2ray】  vless协议
+	【trojan】
+	【v2ray】  vmess协议
+
 
 windows启用用户（举例：administrator）
 	net user administrator /active:yes
@@ -10,32 +23,6 @@ windows禁用用户（举例：administrator）
 windows设置用户密码（举例：administrator 设置密码为：123）
 	net user administrator 123
 
-linux安装Golang (https://go.dev/doc/install)
-# 下载安装包
-	[root@racknerd-ba7b10 ~]# wget https://go.dev/dl/go1.19.linux-amd64.tar.gz
-# 删除残留并解压到 /usr/local 下	
-	[root@racknerd-ba7b10 ~]# rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz
-# 编辑 /etc/profile 添加环境变量 添加内容如下
-	# Golang path
-	export GOROOT=/usr/local/go
-	export PATH=$PATH:$GOROOT/bin
-	export GOPATH=$HOME/goproject
- # 重载环境变量配置
-	[root@racknerd-ba7b10 ~]# source /etc/profile
-
-
-linux下运行 acme.sh 脚本签发ssl (let's encrypt)
-# 安装 acme.sh 脚本 
-	[root@racknerd-ba7b10 ~]# curl  https://get.acme.sh | sh -s email=my@angelloveroger@gmail.com
-# 创建一个bash的alias 方便直接使用 acme.sh 脚本命令
-	[root@racknerd-ba7b10 ~]# alias acme.sh=~/.acme.sh/acme.sh
-# 重新载入 .bashrc 配置
-	[root@racknerd-ba7b10 ~]# source ~/.bashrc 
-# 设置签发ssl证书的默认CA机构为let's encrypt
-	[root@racknerd-ba7b10 ~]# acme.sh --set-default-ca --server letsencrypt
-
-youtube可用下载脚本基于python you-get youtube-dl
-下载工具 aria2
 
 // 查看文件格式 youtube
 youtube-dl -F https://www.youtube.com/watch?v=3dwek9yNPOo --proxy http://127.0.0.1:7890 
