@@ -126,8 +126,9 @@ echo $a>>1;
 */
 
 ini_set('display_errors', 1);
-include './vendor/autoload.php';
+
 /*  创建二维码
+include './vendor/autoload.php';
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
@@ -167,5 +168,7 @@ $qrcode = 5 . '_' . 10 . '_' . time() . '.png';
 $result->saveToFile(BASE_PATH . $qrcode);
 */
 
-
+$arr = [true, false];
+$bool = in_array('hello kitty', $arr);
+var_dump($bool);
 
