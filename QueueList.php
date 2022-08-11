@@ -16,6 +16,7 @@ class QueueList
 
 
     /** 2.配置队列驱动类型 可支持sync（默认） database(数据库) redis(推荐)
+     *  配置文件位于：application/extra/queue.php
      *  return [
      *
      * // redis 驱动配置

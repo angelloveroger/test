@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>九九乘法表</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        p {
+            width: 100px;
+            display: inline-block;
+            padding: 10px;
+            margin: 0;
+            font-size: 20px;
+            background-color: #FFFFFF;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+        }
+        div {
+            display: block;
+        }
+        #cheng99 {
+            width: auto;
+            display: inline-block;
+            border-left: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+        #group{
+            display: block;
+            margin-top: 20px;
+            width: 200px;
+        }
+        #bianse{
+            display: inline-block;
+            width: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+ 
+<body>
+<h1>9*9乘法表</h1>
+<div id="cheng99"></div>
+ 
+<br/>
+<br/>
+输入你想打印的乘法口诀: <input type="text" name="numKey" />
+<button onclick="reload()" id="reprint">确认</button>  <button onclick="delOneline()" id="delOneline">来人删一行</button>
+ 
+ 
+ 
+<a href="https://beian.miit.gov.cn/" target="_blank" style="position:fixed; bottom:0; left: 50%;">鄂ICP备2021009272号</a>
+ 
+</body>
+<script>
+    var globV = 9;
+    window.onload = function() {
+        for(let i = 1; i <= 9; i++) {
+            divs = document.getElementById("cheng99").innerHTML += "<div></div>";
+            for(let j = 1; j <= i; j++) {
+                document.getElementById("cheng99").getElementsByTagName("div")[i - 1].innerHTML +=
+                    "<p>" + j + " x " + i + " = " + (j * i) + "</p>";
+            }
+        }
+    };
+ 
+ 
+    function reload(){
+        let num = document.getElementsByName('numKey')[0].value;
+        console.log(num);
+        if(num>9 || num<1 ){
+            alert("num must >0 && num<=9");
+        }
+        globV=num;
+        document.getElementById("cheng99").innerHTML="";
+        for(let i = 1; i <= num; i++) {
+            divs = document.getElementById("cheng99").innerHTML += "<div></div>";
+            for(let j = 1; j <= i; j++) {
+                document.getElementById("cheng99").getElementsByTagName("div")[i - 1].innerHTML +=
+                    "<p>" + j + " x " + i + " = " + (j * i) + "</p>";
+            }
+        }
+ 
+    }
+ 
+    function delOneline(){
+        num=globV-1;
+        globV=num;
+        console.log(num);
+        globV=num;
+        document.getElementById("cheng99").innerHTML="";
+        for(let i = 1; i <= num; i++) {
+            divs = document.getElementById("cheng99").innerHTML += "<div></div>";
+            for(let j = 1; j <= i; j++) {
+                document.getElementById("cheng99").getElementsByTagName("div")[i - 1].innerHTML +=
+                    "<p>" + j + " x " + i + " = " + (j * i) + "</p>";
+            }
+        }
+ 
+    }
+</script>
+ 
+</html>
