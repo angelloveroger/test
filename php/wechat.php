@@ -1,7 +1,7 @@
 <?php
-    //微信小程序生成太阳码 https://www.cnblogs.com/jiqing9006/p/9117836.html
-	
-	/*===========================================================================================================================================================================================
+//微信小程序生成太阳码 https://www.cnblogs.com/jiqing9006/p/9117836.html
+
+/*===========================================================================================================================================================================================
 	 一。微信公众号自定义菜单创建
 		//1.获取token【开发文档 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183】
 		$url="https://api.weixin.qq.com/cgi-bin/token";
@@ -34,9 +34,9 @@
 		
 	==============================================================================================================================================================================================
 	*/
-	
 
-	/*===========================================================================================================================================================================================
+
+/*===========================================================================================================================================================================================
 	 二。微信网页授权【开发文档 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842】
 		//1.通过code换取网页授权access_token
 		$url = 'https://api.weixin.qq.com/sns/oauth2/access_token';
@@ -133,3 +133,82 @@ function curlRequestResource($url, $data = [], $type = 1) {
 }
 ==============================================================================================================================================================================================
 */
+
+
+
+
+/** 获取小程序太阳码
+ *      1.需要小程序已经上线方可生成太阳码 
+ *      2.小程序中的每个页面均可生成
+ * 
+ * @param $config array 
+ *      app_id：小程序appId
+ *      secret：小程序密钥 
+ * 
+ * @param $data json
+ *      scene：页面参数
+ *      [page]：页面路径。根路径前不要填加【/】，不能携带参数    默认跳主页面【pages/index/index】
+ *      [check_path]：检查【page】是否存在。为【false】时允许小程序未发布或者【page】不存在    默认为：【true】
+ *      [env_version]：要打开的小程序版本。正式版【release】，体验版【trial】，开发版【develop】    默认值为：【release】  
+ *      [width]：二维码的宽度，单位【px】，最小【280px】，最大【1280px】；
+ * 
+ * @param $codePath string
+ *      太阳码存放路径
+ * 
+ * @param $codeName string
+ *      太阳码名称
+ * 
+ * 官方文档：https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html
+ */
+function createQRcode()
+{
+    $config = [
+        'app_id' => 'wx69331514b10db570',
+        'secret' => '61ae311cb25ea20f92fd4a8b6add018e'
+    ];
+
+    $access_token = json_decode(file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' . $config['app_id'] . '&secret=' . $config['secret']), true)['access_token'];
+
+    $url = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' . $access_token;
+
+    $ch = curl_init();
+
+
+    $data = json_encode([
+        "scene" => "id=855&spm=1.2.855.2.2",
+        "page" => "pages/goods/detail",
+        "check_path" => true,
+        "env_version" => "develop",
+        "width" => 280
+    ]);
+
+    curl_setopt($ch, CURLOPT_POST, 1);
+
+    curl_setopt($ch, CURLOPT_HEADER, 'image/gif');
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+
+        'Content-Type: application/json',
+
+        'Content-Length: ' . strlen($data)
+
+    ));
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($ch);
+
+    $codePath = './';
+
+    $codeName = time() . '.png';
+
+    file_put_contents($codePath . $codeName, $result);
+    
+}
+//==============================================================================================================================================================================================
