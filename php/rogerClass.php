@@ -598,7 +598,7 @@ class rogerClass
         exit;
     }
 
-
+ //===================================================================经纬度======================================================================
     /**
      * 根据经纬度和半径计算出范围
      * @param string $lat 纬度
@@ -629,6 +629,66 @@ class rogerClass
             'maxLng'  => $maxLng
         );
         return $scope;
+    }
+
+    /**
+     * 获取两个经纬度之间的距离
+     * @param string $lat1 纬一
+     * @param String $lng1 经一
+     * @param String $lat2 纬二
+     * @param String $lng2 经二
+     * @return float 返回两点之间的距离
+     */
+    function CalcDistance($lat1, $lng1, $lat2, $lng2)
+    {
+        /** 转换数据类型为 double */
+        $lat1 = doubleval($lat1);
+        $lng1 = doubleval($lng1);
+        $lat2 = doubleval($lat2);
+        $lng2 = doubleval($lng2);
+        /** 以下算法是 Google 出来的，与大多数经纬度计算工具结果一致 */
+        $theta = $lng1 - $lng2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        return ($miles * 1.609344);
+    }
+
+    /**
+     * 验证区域范围（计算一个点是否在一个多边形范围内）
+     * @param array $coordArray 区域
+     * @param array $point      验证点
+     * @return bool
+     */
+    function isPointInPolygon($coordArray, $point)
+    {
+        if (!is_array($coordArray) || !is_array($point)) return false;
+        $maxY = $maxX = 0;
+        $minY = $minX = 9999;
+        foreach ($coordArray as $item) {
+            if ($item['lng'] > $maxX) $maxX = $item['lng'];
+            if ($item['lng'] < $minX) $minX = $item['lng'];
+            if ($item['lat'] > $maxY) $maxY = $item['lat'];
+            if ($item['lat'] < $minY) $minY = $item['lat'];
+            $vertx[] = $item['lng'];
+            $verty[] = $item['lat'];
+        }
+        if ($point['lng'] < $minX || $point['lng'] > $maxX || $point['lat'] < $minY || $point['lat'] > $maxY) {
+            return false;
+        }
+
+        $c = false;
+        $nvert = count($coordArray);
+        $testx = $point['lng'];
+        $testy = $point['lat'];
+        for ($i = 0, $j = $nvert - 1; $i < $nvert; $j = $i++) {
+            if ((($verty[$i] > $testy) != ($verty[$j] > $testy))
+                && ($testx < ($vertx[$j] - $vertx[$i]) * ($testy - $verty[$i]) / ($verty[$j] - $verty[$i]) + $vertx[$i])
+            )
+                $c = !$c;
+        }
+        return $c;
     }
 }
 
