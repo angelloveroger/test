@@ -61,7 +61,7 @@ class PHPTree
 			$parent_id = $item[$parent_key];
 			$r[$parent_id][$id] = $item;
 		}
-		//echo '<pre>';print_r($r);
+		echo '<pre>';print_r($r);
 		return $r;
 	}
 

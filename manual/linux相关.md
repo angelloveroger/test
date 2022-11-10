@@ -6,7 +6,7 @@
 >>  ```   
 >>> - *也可查看当前时间时区为 `UTC`*    
 >>>   ``` 
->>>   [root@vm427138 v2ray] data -R     
+>>>   [root@vm427138 v2ray] date -R     
 >>>   Mon, 25 Jul 2022 11:11:33 +0000 
 >>>   ```      
 >> ---       
@@ -21,17 +21,17 @@
 >>>   ```           
 >>> - *c.创建一个软连接 `/etc/localtime` ，指向上述 `Asia` 目录中的 `Shanghai` 或者 `Chongqing` 文件*     
 >>>   ``` 
->>>   [root@vm427138 v2ray] ls -sf /usr/share/zoneinfo/Asia/Shanghai /etc/loca  ltime 
+>>>   [root@vm427138 v2ray] ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 >>>   ```        
 >> ---
 >> ***3.再次查看时间***      
 >> ``` 
->> [root@vm427138 v2ray] data  
+>> [root@vm427138 v2ray] date  
 >> Mon Jul 25 11:11:32 CST 2022  
 >> ```         
 >>> - *也可查看当前时间时区为 `东八区时`*    
 >>>   ``` 
->>>   [root@vm427138 v2ray] data -R     
+>>>   [root@vm427138 v2ray] date -R     
 >>>   Mon, 25 Jul 2022 11:22:33 +0800 
 >>>   ```
 > ---    
@@ -76,7 +76,7 @@
 >> 
 >> - *添加[移除]端口*   
 >>   ``` 
->>   [root@vm427138 ~]# firewall-cmd --permanent --zone=public --add[/remove]-po  rt=443/tcp 
+>>   [root@vm427138 ~]# firewall-cmd --permanent --zone=public --add[/remove]-port  rt=443/tcp 
 >>   ```   
 >>
 >> - *检查配置*   
@@ -139,11 +139,11 @@
 > ## [Golang](https://go.dev/doc/install) 安装 
 >> - *1.下载安装包*     
 >>   ```
->>   [root@racknerd-ba7b10 ~]# wget https://go.dev/dl/go1.19.linux-amd64.tar.gz
+>>   [root@racknerd-ba7b10 ~]# wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 >>   ```
 >> - *2.删除残留并解压到  `/usr/local` 下*	    
 >>   ```
->>   [root@racknerd-ba7b10 ~]# rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.> l>i  nux-amd64.tar.gz
+>>   [root@racknerd-ba7b10 ~]# rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
 >>   ```  
 >> - *3.编辑 `/etc/profile` 添加环境变量 添加内容如下：*
 >>   ```
