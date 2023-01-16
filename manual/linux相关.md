@@ -76,7 +76,7 @@
 >> 
 >> - *添加[移除]端口*   
 >>   ``` 
->>   [root@vm427138 ~]# firewall-cmd --permanent --zone=public --add[/remove]-port  rt=443/tcp 
+>>   [root@vm427138 ~]# firewall-cmd --permanent --zone=public --add[/remove]-port=443/tcp 
 >>   ```   
 >>
 >> - *检查配置*   
