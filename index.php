@@ -1,4 +1,25 @@
 <?php
+echo 1;
+
+
+// $str = '<p><span style=\"font-size: 14px;\">以上价格为出厂价，最终价格以签署合同为准！</span><br></p><p><span style=\"font-size: 14px;\">详情请电话或发送邮件咨询。</span></p><div><br></div>';
+// ehco 1;
+// preg_match('[\u4e00-\u9fa5]', $str, $arr)
+// echo '<pre>';
+// print_r($arr);
+
+
+exit();
+
+$str = '1,2,3,5,6,87';
+
+//var_dump(trim(str_replace(',,', ',', str_replace('3', '', $str)), ','));
+$arr = explode(',', $str);
+var_dump(array_diff($arr, [87]));
+
+exit();
+
+
 /*
 $goodsList = [
     ['id' => 1, 'name' => 'roger'],
