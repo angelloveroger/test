@@ -274,8 +274,8 @@ class Rsa {
 
 
 $obj = new Rsa();
-$pubPath = 'C:/Users/roger/Documents/key/pubKey.pem';
-$priPath = 'C:/Users/roger/Documents/key/priKey.pem';
+$pubPath = '/home/wwwroot/after/public/cert/pubKey.pem';
+$priPath = '/home/wwwroot/after/public/cert/priKey.pem';
 if (file_exists($pubPath) && file_exists($priPath)) {
     $obj->init($pubPath, $priPath);
 } else {
@@ -283,11 +283,11 @@ if (file_exists($pubPath) && file_exists($priPath)) {
     $obj->init($pubPath, $priPath);
 }
 
-/** 加密  解密
- * $str = [[],['name'=>'roger', 'age'=>31]];
- * $scr = $obj -> encrypt(json_encode($str));
- * echo $obj -> decrypt($scr);
- */
+// 加密  解密
+$str = [[],['name'=>'roger', 'age'=>31]];
+$scr = $obj -> encrypt(json_encode($str));
+echo $obj -> decrypt($scr);
+
 
 /** 签名 验签
  * $str = 'hello world';
