@@ -16,12 +16,29 @@
 	【v2ray】  vmess协议
 
 
-windows启用用户（举例：administrator）
-	net user administrator /active:yes
-windows禁用用户（举例：administrator）
-	net user administrator /active:no
-windows设置用户密码（举例：administrator 设置密码为：123）
-	net user administrator 123
+windows查看用户
+	net user
+windows查看指定用户
+	net user username	
+
+windows新增用户
+	net user username [password] /add		
+windows设置用户密码
+	net user username password
+
+windows启用用户
+	net user username /active:yes
+windows禁用用户
+	net user username /active:no
+
+windows删除用户
+	net user username /delete
+
+windows设置可访问时间范围
+	net user username /times:日期段，时间段
+	用M,T,W,T,F,Sa,Su来表示星期一到星期天，例如M-F
+	时间段要求整点，例如8:00-18:00
+
 
 
 // 查看文件格式 youtube
