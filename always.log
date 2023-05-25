@@ -40,16 +40,19 @@ windows设置可访问时间范围
 	时间段要求整点，例如8:00-18:00
 
 
+// windows下计算文件MD5/SHA值
+	certutil -hashfile file_name MD5/SHA
+
 
 // 查看文件格式 youtube
-youtube-dl -F https://www.youtube.com/watch?v=3dwek9yNPOo --proxy http://127.0.0.1:7890 
+	youtube-dl -F https://www.youtube.com/watch?v=3dwek9yNPOo --proxy http://127.0.0.1:7890 
 
 // 下载最好的音频视频 youtube
-youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=3dwek9yNPOo --proxy http://127.0.0.1:7890 
+	youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=3dwek9yNPOo --proxy http://127.0.0.1:7890 
 
 // aria2c下载最好的音频视频
-youtube-dl -f bestvideo+bestaudio 'https://www.youtube.com/watch?v=c9RzZpV460k' --proxy http://127.0.0.1:7890  --external-downloader aria2c --external-downloader-args '--all-proxy http://127.0.0.1:7890 -x 16 -k 5M'
+	youtube-dl -f bestvideo+bestaudio 'https://www.youtube.com/watch?v=c9RzZpV460k' --proxy http://127.0.0.1:7890  --external-downloader aria2c --external-downloader-args '--all-proxy http://127.0.0.1:7890 -x 16 -k 5M'
 
 // aria2c下载哔哩哔哩
-youtube-dl https://www.bilibili.com/video/BV1zq4y1p7ga  --external-downloader aria2c --external-downloader-args '-x 16 -k 3M'
+	youtube-dl https://www.bilibili.com/video/BV1zq4y1p7ga  --external-downloader aria2c --external-downloader-args '-x 16 -k 3M'
 
