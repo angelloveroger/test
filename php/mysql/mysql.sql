@@ -167,7 +167,88 @@ set global slow_query_log=on;
     -- UPDATE tableA INNER JOIN tableB SET tableA.column = tableB.column WHERE tableA.columnA = tableB.columnA AND tableA.columnB = xxx 
 
 
+-- mysql  url_decode函数
+    DELIMITER $$
 
+    DROP FUNCTION IF EXISTS `url_decode`$$
+
+    CREATE FUNCTION `url_decode`(original_text TEXT CHARSET utf8mb4) RETURNS TEXT CHARSET utf8mb4
+    BEGIN  
+        DECLARE new_text TEXT DEFAULT NULL;  
+        DECLARE pointer INT DEFAULT 1;  
+        DECLARE end_pointer INT DEFAULT 1;  
+        DECLARE encoded_text TEXT DEFAULT NULL;  
+        DECLARE result_text TEXT DEFAULT NULL;  
+        DECLARE rep_text TEXT DEFAULT NULL;  
+        DECLARE unhex_text TEXT DEFAULT NULL;  
+
+        SET new_text = REPLACE(original_text,'+',' ');  
+        SET new_text = REPLACE(new_text,'%0A','\r\n');  
+
+        SET pointer = LOCATE('%', new_text);  
+        WHILE pointer <> 0 && pointer < (CHAR_LENGTH(new_text) - 2) DO  
+            SET end_pointer = pointer + 3;  
+            WHILE MID(new_text, end_pointer, 1) = '%' DO  
+                SET end_pointer = end_pointer+3;  
+            END WHILE;  
+
+            SET encoded_text = MID(new_text, pointer, end_pointer - pointer);  
+      SET rep_text = REPLACE(encoded_text, '%', '');
+      SET unhex_text = UNHEX(rep_text);
+            SET result_text = CONVERT(unhex_text USING utf8mb4);  
+            SET new_text = REPLACE(new_text, encoded_text, result_text);  
+            SET pointer = LOCATE('%', new_text, pointer + CHAR_LENGTH(result_text)); 
+
+        END WHILE;  
+
+        RETURN new_text;  
+
+    END$$
+
+    DELIMITER ;
+
+
+
+-- mysql  url_encode函数
+    DELIMITER $$
+
+    DROP FUNCTION IF EXISTS `url_encode`$$
+
+    CREATE FUNCTION url_encode(str VARCHAR(4096) CHARSET utf8mb4) RETURNS varchar(4096) CHARSET utf8mb4
+    BEGIN
+      DECLARE sub VARCHAR(1) CHARSET utf8mb4;
+      DECLARE val BIGINT DEFAULT 0;
+      DECLARE ind INT DEFAULT 1;
+      DECLARE oct INT DEFAULT 0;
+      DECLARE ret VARCHAR(4096) DEFAULT '';
+      DECLARE octind INT DEFAULT 0;
+      IF str is NULL THEN
+          RETURN NULL;
+      ELSE SET ret = '';
+          WHILE ind <= CHAR_LENGTH(str) DO
+            SET sub = MID(str, ind, 1);
+            SET val = ORD(sub);
+            IF NOT (val BETWEEN 48 AND 57 OR 
+                    val BETWEEN 65 AND 90 OR 
+                    val BETWEEN 97 AND 122 OR 
+                    val IN (45, 46, 95, 126)) THEN
+                SET octind = OCTET_LENGTH(sub);
+                WHILE octind > 0 DO
+                  SET oct = (val >> (8 * (octind - 1)));
+                  SET ret = CONCAT(ret, '%', LPAD(HEX(oct), 2, 0));
+                  SET val = (val & (POWER(256, (octind - 1)) - 1));
+                  SET octind = (octind - 1);
+                END WHILE;
+            ELSE
+              SET ret = CONCAT(ret, sub);
+            END IF;
+            SET ind = (ind + 1);
+        END WHILE;
+      END IF;
+      RETURN ret;
+    END$$
+
+    DELIMITER ;
 
 
 
